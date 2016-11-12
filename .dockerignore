@@ -7,3 +7,5 @@ LICENSE
 NOTES.md
 scan_test.go
 CHANGELOG.md
+circle.yml
+Makefile

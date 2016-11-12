@@ -1,0 +1,9 @@
+# Ignore .git folder
+.git*
+
+.gitignore
+README.md
+LICENSE
+NOTES.md
+scan_test.go
+CHANGELOG.md

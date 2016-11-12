@@ -1,9 +1,10 @@
 malice-sophos
 =============
 
-[![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) 
-[![Docker Stars](https://img.shields.io/docker/stars/malice/sophos.svg)](https://hub.docker.com/r/malice/sophos/) 
-[![Docker Pulls](https://img.shields.io/docker/pulls/malice/sophos.svg)](https://hub.docker.com/r/malice/sophos/) 
+[![Circle CI](https://circleci.com/gh/maliceio/malice-sophos.png?style=shield)](https://circleci.com/gh/maliceio/malice-sophos)
+[![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
+[![Docker Stars](https://img.shields.io/docker/stars/malice/sophos.svg)](https://hub.docker.com/r/malice/sophos/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/malice/sophos.svg)](https://hub.docker.com/r/malice/sophos/)
 [![Docker Image](https://img.shields.io/badge/docker image--blue.svg)](https://hub.docker.com/r/malice/sophos/)
 
 This repository contains a **Dockerfile** of [Sophos](https://www.sophos.com/en-us/products/free-tools/sophos-antivirus-for-linux.aspx) for [Docker](https://www.docker.io/)'s [trusted build](https://hub.docker.com/r/malice/sophos/) published to the public [DockerHub](https://index.docker.io/).
@@ -56,7 +57,9 @@ Run 'sophos COMMAND --help' for more information on a command.
 
 This will output to stdout and POST to malice results API webhook endpoint.
 
-### Sample Output JSON:
+## Sample Output
+
+### JSON:
 
 ```json
 {
@@ -70,7 +73,7 @@ This will output to stdout and POST to malice results API webhook endpoint.
 }
 ```
 
-### Sample Output STDOUT (Markdown Table):
+### STDOUT (Markdown Table):
 
 ---
 
@@ -104,7 +107,7 @@ $ docker run -v `pwd`:/malware:ro \
              malice/sophos --post evil.malware
 ```
 
-To update the AV run the following:
+### To update the AV run the following:
 
 ```bash
 $ docker run --name=sophos malice/sophos update
@@ -120,17 +123,17 @@ $ docker run --rm malice/sophos:updated EICAR
 
 ### Issues
 
-Find a bug? Want more features? Find something missing in the documentation? Let me know! Please don't hesitate to [file an issue](https://github.com/maliceio/malice-av/issues/new).
+Find a bug? Want more features? Find something missing in the documentation? Let me know! Please don't hesitate to [file an issue](https://github.com/maliceio/malice-sophos/issues/new).
 
 ### CHANGELOG
 
-See [`CHANGELOG.md`](https://github.com/maliceio/malice-av/blob/master/sophos/CHANGELOG.md)
+See [`CHANGELOG.md`](https://github.com/maliceio/malice-sophos/blob/master/sophos/CHANGELOG.md)
 
 ### Contributing
 
-[See all contributors on GitHub](https://github.com/maliceio/malice-av/graphs/contributors).
+[See all contributors on GitHub](https://github.com/maliceio/malice-sophos/graphs/contributors).
 
-Please update the [CHANGELOG.md](https://github.com/maliceio/malice-av/blob/master/sophos/CHANGELOG.md) and submit a [Pull Request on GitHub](https://help.github.com/articles/using-pull-requests/).
+Please update the [CHANGELOG.md](https://github.com/maliceio/malice-sophos/blob/master/sophos/CHANGELOG.md) and submit a [Pull Request on GitHub](https://help.github.com/articles/using-pull-requests/).
 
 ### License
 

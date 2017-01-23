@@ -5,7 +5,7 @@ malice-sophos
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
 [![Docker Stars](https://img.shields.io/docker/stars/malice/sophos.svg)](https://hub.docker.com/r/malice/sophos/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/malice/sophos.svg)](https://hub.docker.com/r/malice/sophos/)
-[![Docker Image](https://img.shields.io/badge/docker image--blue.svg)](https://hub.docker.com/r/malice/sophos/)
+[![Docker Image](https://img.shields.io/badge/docker image-1.92 GB-blue.svg)](https://hub.docker.com/r/malice/sophos/)
 
 This repository contains a **Dockerfile** of [Sophos](https://www.sophos.com/en-us/products/free-tools/sophos-antivirus-for-linux.aspx) for [Docker](https://www.docker.io/)'s [trusted build](https://hub.docker.com/r/malice/sophos/) published to the public [DockerHub](https://index.docker.io/).
 
@@ -33,7 +33,7 @@ Usage: sophos [OPTIONS] COMMAND [arg...]
 
 Malice Sophos AntiVirus Plugin
 
-Version: v0.1.0, BuildTime: 20160920
+Version: v0.1.0, BuildTime: 20170123
 
 Author:
   blacktop - <https://github.com/blacktop>
@@ -69,7 +69,7 @@ This will output to stdout and POST to malice results API webhook endpoint.
     "result": "EICAR-AV-Test",
     "engine": "5.27.0",
     "database": "5.31",
-    "updated": "20160920"
+    "updated": "20170123"
   }
 }
 ```
@@ -82,7 +82,7 @@ This will output to stdout and POST to malice results API webhook endpoint.
 
 | Infected | Result        | Engine | Updated  |
 | -------- | ------------- | ------ | -------- |
-| true     | EICAR-AV-Test | 5.27.0 | 20160920 |
+| true     | EICAR-AV-Test | 5.27.0 | 20170123 |
 
 ---
 

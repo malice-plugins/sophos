@@ -21,12 +21,12 @@ Content-Type: application/json; charset=UTF-8
 Date: Sat, 21 Jan 2017 05:39:29 GMT
 
 {
-    "sophos": {
-        "database": "4477/13807",
-        "engine": "13.0.3114",
-        "infected": true,
-        "result": "Found Win32/DH{CGE?}",
-        "updated": "20170121"
-    }
+  "sophos": {
+    "infected": true,
+    "result": "EICAR-AV-Test",
+    "engine": "5.27.0",
+    "database": "5.35",
+    "updated": "20170123"
+  }
 }
 ```

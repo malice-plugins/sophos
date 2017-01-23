@@ -40,17 +40,18 @@ Author:
 
 Options:
   --verbose, -V         verbose output
-  --table, -t           output as Markdown table
-  --post, -p            POST results to Malice webhook [$MALICE_ENDPOINT]
-  --proxy, -x           proxy settings for Malice webhook endpoint [$MALICE_PROXY]
-  --timeout value       malice plugin timeout (in seconds) (default: 10) [$MALICE_TIMEOUT]
-  --elasitcsearch value elasitcsearch address for Malice to store results [$MALICE_ELASTICSEARCH]
-  --help, -h            show help
-  --version, -v         print the version
+  --table, -t	        output as Markdown table
+  --callback, -c	    POST results to Malice webhook [$MALICE_ENDPOINT]
+  --proxy, -x	        proxy settings for Malice webhook endpoint [$MALICE_PROXY]
+  --timeout value       malice plugin timeout (in seconds) (default: 60) [$MALICE_TIMEOUT]    
+  --elasitcsearch value elasitcsearch address for Malice to store results [$MALICE_ELASTICSEARCH]   
+  --help, -h	        show help
+  --version, -v	        print the version
 
 Commands:
-  update        Update virus definitions
-  help          Shows a list of commands or help for one command
+  update	Update virus definitions
+  web       Create a sophos scan web service  
+  help		Shows a list of commands or help for one command
 
 Run 'sophos COMMAND --help' for more information on a command.
 ```
@@ -88,38 +89,11 @@ This will output to stdout and POST to malice results API webhook endpoint.
 Documentation
 -------------
 
-### To write results to [ElasticSearch](https://www.elastic.co/products/elasticsearch)
+-	[To write results to ElasticSearch](https://github.com/maliceio/malice-sophos/blob/master/docs/elasticsearch.md)
+-	[To create a Sophos scan micro-service](https://github.com/maliceio/malice-sophos/blob/master/docs/web.md)
+-	[To post results to a webhook](https://github.com/maliceio/malice-sophos/blob/master/docs/callback.md)
+-	[To update the AV definitions](https://github.com/maliceio/malice-sophos/blob/master/docs/update.md)
 
-```bash
-$ docker volume create --name malice
-$ docker run -d --name elastic \
-                -p 9200:9200 \
-                -v malice:/usr/share/elasticsearch/data \
-                 blacktop/elasticsearch
-$ docker run --rm -v /path/to/malware:/malware:ro --link elastic malice/sophos -t FILE
-```
-
-### POST results to a webhook
-
-```bash
-$ docker run -v `pwd`:/malware:ro \
-             -e MALICE_ENDPOINT="https://malice.io:31337/scan/file" \
-             malice/sophos --post evil.malware
-```
-
-### To update the AV run the following:
-
-```bash
-$ docker run --name=sophos malice/sophos update
-```
-
-Then to use the updated sophos container:
-
-```bash
-$ docker commit sophos malice/sophos:updated
-$ docker rm sophos # clean up updated container
-$ docker run --rm malice/sophos:updated EICAR
-```
 
 ### Issues
 

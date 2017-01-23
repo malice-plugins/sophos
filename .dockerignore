@@ -3,9 +3,13 @@
 
 .gitignore
 README.md
+README.md.bu
 LICENSE
 NOTES.md
 scan_test.go
 CHANGELOG.md
 circle.yml
 Makefile
+docs*
+scan_test.go
+results.json

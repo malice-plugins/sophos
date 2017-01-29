@@ -11,4 +11,7 @@ size: build
 tags:
 	docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" $(REPO)/$(NAME)
 
-.PHONY: build size tags
+test:
+	docker run --init --rm $(REPO)/$(NAME):$(VERSION) -t EICAR
+
+.PHONY: build size tags test

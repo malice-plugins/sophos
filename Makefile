@@ -2,10 +2,12 @@ REPO=malice
 NAME=sophos
 VERSION=$(shell cat VERSION)
 
+all: build size test
+
 build:
 	docker build -t $(REPO)/$(NAME):$(VERSION) .
 
-size: build
+size:
 	sed -i.bu 's/docker image-.*-blue/docker image-$(shell docker images --format "{{.Size}}" $(REPO)/$(NAME):$(VERSION))-blue/' README.md
 
 tags:

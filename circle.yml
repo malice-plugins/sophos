@@ -13,7 +13,8 @@ dependencies:
 
 test:
   override:
-    - docker run malice_av -t EICAR
+    - docker images malice_av
+    - docker run malice_av -V -t EICAR
 
 deployment:
   # master:

@@ -27,6 +27,8 @@ var Version string
 // BuildTime stores the plugin's build time
 var BuildTime string
 
+var path string
+
 const (
 	name     = "sophos"
 	category = "av"
@@ -51,20 +53,32 @@ type ResultsData struct {
 	Updated  string `json:"updated" structs:"updated"`
 }
 
+func assert(err error) {
+	if err != nil {
+		log.WithFields(log.Fields{
+			"plugin":   name,
+			"category": category,
+			"path":     path,
+		}).Fatal(err)
+	}
+}
+
 // AvScan performs antivirus scan
-func AvScan(path string, timeout int) Sophos {
+func AvScan(timeout int) Sophos {
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Duration(timeout)*time.Second)
 	defer cancel()
 
 	var results ResultsData
 	output, err := utils.RunCommand(ctx, "savscan", "-f", path)
+	assert(err)
 	results, err = ParseSophosOutput(output, err, path)
 	if err != nil {
 		// If fails try a second time
 		output, err := utils.RunCommand(ctx, "savscan", "-f", path)
+		assert(err)
 		results, err = ParseSophosOutput(output, err, path)
-		utils.Assert(err)
+		assert(err)
 	}
 
 	return Sophos{
@@ -99,6 +113,12 @@ func ParseSophosOutput(sophosout string, err error, errpath string) (ResultsData
 	if err != nil {
 		return ResultsData{}, err
 	}
+
+	log.WithFields(log.Fields{
+		"plugin":   name,
+		"category": category,
+		"path":     path,
+	}).Debug("Sophos Output: ", sophosout)
 
 	version, database := getSophosVersion()
 
@@ -138,7 +158,13 @@ func getSophosVersion() (version string, database string) {
 	// Released                  : 26 April 2016
 	// Total viruses (with IDEs) : 11283995
 	versionOut, err := utils.RunCommand(nil, "/opt/sophos/bin/savscan", "--version")
-	utils.Assert(err)
+	assert(err)
+
+	log.WithFields(log.Fields{
+		"plugin":   name,
+		"category": category,
+		"path":     path,
+	}).Debug("Sophos Version: ", versionOut)
 
 	return parseSophosVersion(versionOut)
 }
@@ -181,7 +207,7 @@ func getUpdatedDate() string {
 		return BuildTime
 	}
 	updated, err := ioutil.ReadFile("/opt/malice/UPDATED")
-	utils.Assert(err)
+	assert(err)
 	return string(updated)
 }
 
@@ -204,9 +230,13 @@ func updateAV(ctx context.Context) error {
 	// Updated to versions - SAV: 9.12.2, Engine: 3.65.2, Data: 5.30
 	// Successfully updated Sophos Anti-Virus from sdds:SOPHOS
 	output, err := utils.RunCommand(ctx, "/opt/sophos/update/savupdate.sh")
-	utils.Assert(err)
+	assert(err)
 
-	fmt.Println(output)
+	log.WithFields(log.Fields{
+		"plugin":   name,
+		"category": category,
+		"path":     path,
+	}).Debug("Sophos Update: ", output)
 
 	// Update UPDATED file
 	t := time.Now().Format("20060102")
@@ -254,27 +284,28 @@ func webAvScan(w http.ResponseWriter, r *http.Request) {
 
 	tmpfile, err := ioutil.TempFile("/malware", "web_")
 	if err != nil {
-		log.Fatal(err)
+		assert(err)
 	}
 	defer os.Remove(tmpfile.Name()) // clean up
 
 	data, err := ioutil.ReadAll(file)
 
 	if _, err = tmpfile.Write(data); err != nil {
-		log.Fatal(err)
+		assert(err)
 	}
 	if err = tmpfile.Close(); err != nil {
-		log.Fatal(err)
+		assert(err)
 	}
 
 	// Do AV scan
-	sophos := AvScan(tmpfile.Name(), 60)
+	path = tmpfile.Name()
+	sophos := AvScan(60)
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
 
 	if err := json.NewEncoder(w).Encode(sophos); err != nil {
-		log.Fatal(err)
+		assert(err)
 	}
 }
 
@@ -284,6 +315,7 @@ func main() {
 
 	cli.AppHelpTemplate = utils.AppHelpTemplate
 	app := cli.NewApp()
+
 	app.Name = "sophos"
 	app.Author = "blacktop"
 	app.Email = "https://github.com/blacktop"
@@ -318,7 +350,7 @@ func main() {
 		},
 		cli.IntFlag{
 			Name:   "timeout",
-			Value:  10,
+			Value:  60,
 			Usage:  "malice plugin timeout (in seconds)",
 			EnvVar: "MALICE_TIMEOUT",
 		},
@@ -338,30 +370,28 @@ func main() {
 			Name:  "web",
 			Usage: "Create a Sophos scan web service",
 			Action: func(c *cli.Context) error {
-				// ctx, cancel := context.WithTimeout(context.Background(), time.Duration(c.Int("timeout"))*time.Second)
-				// defer cancel()
-
 				webService()
-
 				return nil
 			},
 		},
 	}
 	app.Action = func(c *cli.Context) error {
 
+		var err error
+
 		if c.Bool("verbose") {
 			log.SetLevel(log.DebugLevel)
 		}
 
 		if c.Args().Present() {
-			path, err := filepath.Abs(c.Args().First())
-			utils.Assert(err)
+			path, err = filepath.Abs(c.Args().First())
+			assert(err)
 
-			if _, err := os.Stat(path); os.IsNotExist(err) {
-				utils.Assert(err)
+			if _, err = os.Stat(path); os.IsNotExist(err) {
+				assert(err)
 			}
 
-			sophos := AvScan(path, c.Int("timeout"))
+			sophos := AvScan(c.Int("timeout"))
 
 			// upsert into Database
 			elasticsearch.InitElasticSearch(elastic)
@@ -376,7 +406,7 @@ func main() {
 				printMarkDownTable(sophos)
 			} else {
 				sophosJSON, err := json.Marshal(sophos)
-				utils.Assert(err)
+				assert(err)
 				if c.Bool("post") {
 					request := gorequest.New()
 					if c.Bool("proxy") {
@@ -398,5 +428,5 @@ func main() {
 	}
 
 	err := app.Run(os.Args)
-	utils.Assert(err)
+	assert(err)
 }

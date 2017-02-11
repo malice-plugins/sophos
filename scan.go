@@ -12,11 +12,11 @@ import (
 	"time"
 
 	log "github.com/Sirupsen/logrus"
-	"github.com/crackcomm/go-clitable"
 	"github.com/fatih/structs"
 	"github.com/gorilla/mux"
 	"github.com/maliceio/go-plugin-utils/database/elasticsearch"
 	"github.com/maliceio/go-plugin-utils/utils"
+	"github.com/maliceio/malice/utils/clitable"
 	"github.com/parnurzeal/gorequest"
 	"github.com/urfave/cli"
 )
@@ -361,9 +361,7 @@ func main() {
 			Aliases: []string{"u"},
 			Usage:   "Update virus definitions",
 			Action: func(c *cli.Context) error {
-				ctx, cancel := context.WithTimeout(context.Background(), time.Duration(c.Int("timeout"))*time.Second)
-				defer cancel()
-				return updateAV(ctx)
+				return updateAV(nil)
 			},
 		},
 		{

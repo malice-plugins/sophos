@@ -1,6 +1,13 @@
-FROM debian:jessie
+FROM ubuntu:xenial
 
 LABEL maintainer "https://github.com/blacktop"
+
+LABEL malice.plugin.repository = "https://github.com/maliceio/malice-sophos.git"
+LABEL malice.plugin.category="av"
+LABEL malice.plugin.mime="*"
+LABEL malice.plugin.docker.engine="*"
+
+ENV GO_VERSION 1.8.3
 
 # Install Requirements
 RUN buildDeps='ca-certificates wget' \
@@ -18,8 +25,6 @@ RUN buildDeps='ca-certificates wget' \
 
 # Update Sophos
 RUN echo "===> Update Sophos..." && /opt/sophos/update/savupdate.sh
-
-ENV GO_VERSION 1.7.5
 
 # Install Go binary
 COPY . /go/src/github.com/maliceio/malice-sophos

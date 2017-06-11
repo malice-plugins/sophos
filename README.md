@@ -1,17 +1,13 @@
 malice-sophos
 =============
 
-[![Circle CI](https://circleci.com/gh/maliceio/malice-sophos.png?style=shield)](https://circleci.com/gh/maliceio/malice-sophos)
-[![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
-[![Docker Stars](https://img.shields.io/docker/stars/malice/sophos.svg)](https://hub.docker.com/r/malice/sophos/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/malice/sophos.svg)](https://hub.docker.com/r/malice/sophos/)
-[![Docker Image](https://img.shields.io/badge/docker image-1.91 GB-blue.svg)](https://hub.docker.com/r/malice/sophos/)
+[![Circle CI](https://circleci.com/gh/maliceio/malice-sophos.png?style=shield)](https://circleci.com/gh/maliceio/malice-sophos)[![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)[![Docker Stars](https://img.shields.io/docker/stars/malice/sophos.svg)](https://hub.docker.com/r/malice/sophos/)[![Docker Pulls](https://img.shields.io/docker/pulls/malice/sophos.svg)](https://hub.docker.com/r/malice/sophos/)[![Docker Image](https://img.shields.io/badge/docker%20image-1.91%20GB-blue.svg)](https://hub.docker.com/r/malice/sophos/)
 
 This repository contains a **Dockerfile** of [Sophos](https://www.sophos.com/en-us/products/free-tools/sophos-antivirus-for-linux.aspx) for [Docker](https://www.docker.io/)'s [trusted build](https://hub.docker.com/r/malice/sophos/) published to the public [DockerHub](https://index.docker.io/).
 
 ### Dependencies
 
--	[debian:jessie (*125 MB*\)](https://index.docker.io/_/debian/)
+-	[ubuntu:xenial (*118 MB*\)](https://hub.docker.com/r/library/ubuntu/)
 
 ### Installation
 
@@ -58,7 +54,8 @@ Run 'sophos COMMAND --help' for more information on a command.
 
 This will output to stdout and POST to malice results API webhook endpoint.
 
-## Sample Output
+Sample Output
+-------------
 
 ### JSON:
 
@@ -81,7 +78,7 @@ This will output to stdout and POST to malice results API webhook endpoint.
 #### Sophos
 
 | Infected | Result        | Engine | Updated  |
-| -------- | ------------- | ------ | -------- |
+|----------|---------------|--------|----------|
 | true     | EICAR-AV-Test | 5.27.0 | 20170123 |
 
 ---
@@ -93,7 +90,6 @@ Documentation
 -	[To create a Sophos scan micro-service](https://github.com/maliceio/malice-sophos/blob/master/docs/web.md)
 -	[To post results to a webhook](https://github.com/maliceio/malice-sophos/blob/master/docs/callback.md)
 -	[To update the AV definitions](https://github.com/maliceio/malice-sophos/blob/master/docs/update.md)
-
 
 ### Issues
 

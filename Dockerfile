@@ -11,7 +11,7 @@ ENV GO_VERSION 1.8.3
 
 # Install Requirements
 RUN buildDeps='ca-certificates wget' \
-  && apt-get update -qq \
+  && DEBIAN_FRONTEND=noninteractive apt-get update -qq \
   && apt-get install -yq $buildDeps \
   && echo "===> Install Sophos..." \
   && cd /tmp \
@@ -19,7 +19,7 @@ RUN buildDeps='ca-certificates wget' \
   && tar xzvf sav-linux-free-9.tgz \
   && ./sophos-av/install.sh /opt/sophos --update-free --acceptlicence --autostart=False --enableOnBoot=False --automatic --ignore-existing-installation --update-source-type=s \
   && echo "===> Clean up unnecessary files..." \
-  && apt-get remove --purge -y $buildDeps $(apt-mark showauto) \
+  && apt-get remove --purge -y --force-yes $buildDeps $(apt-mark showauto) \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /go
 
@@ -33,7 +33,7 @@ RUN buildDeps='ca-certificates \
                mercurial \
                git-core \
                wget' \
-  && apt-get update -qq \
+  && DEBIAN_FRONTEND=noninteractive apt-get update -qq \
   && apt-get install -yq $buildDeps --no-install-recommends \
   && echo "===> Install Go..." \
   && ARCH="$(dpkg --print-architecture)" \
@@ -47,7 +47,7 @@ RUN buildDeps='ca-certificates \
   && go get \
   && go build -ldflags "-X main.Version=$(cat VERSION) -X main.BuildTime=$(date -u +%Y%m%d)" -o /bin/avscan \
   && echo "===> Clean up unnecessary files..." \
-  && apt-get remove --purge -y $buildDeps $(apt-mark showauto) \
+  && apt-get remove --purge -y --force-yes $buildDeps $(apt-mark showauto) \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /go /usr/local/go
 

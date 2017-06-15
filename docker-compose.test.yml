@@ -4,4 +4,4 @@ services:
     build:
       context: .
     image: app
-    command: -t EICAR
+    command: -V -t EICAR

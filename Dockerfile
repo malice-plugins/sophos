@@ -47,7 +47,7 @@ RUN buildDeps='ca-certificates \
   && go get \
   && go build -ldflags "-X main.Version=$(cat VERSION) -X main.BuildTime=$(date -u +%Y%m%d)" -o /bin/avscan \
   && echo "===> Clean up unnecessary files..." \
-  && apt-get purge -y $buildDeps $(apt-mark showauto) \
+  && apt-get purge --auto-remove $buildDeps $(apt-mark showauto) \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /go /usr/local/go
 

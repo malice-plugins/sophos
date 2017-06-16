@@ -54,12 +54,11 @@ type ResultsData struct {
 }
 
 func assert(err error) {
-	// Sophos exits with error status 3 if it finds a virus...why?!
-	if err.Error() == "exit status 3" {
-		return
-	}
-
 	if err != nil {
+		// Sophos exits with error status 3 if it finds a virus...why?!
+		if err.Error() == "exit status 3" {
+			return
+		}
 		log.WithFields(log.Fields{
 			"plugin":   name,
 			"category": category,

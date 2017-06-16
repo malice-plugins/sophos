@@ -1,5 +1,8 @@
 version: '3'
 services:
+  elasticsearch:
+    image: blacktop/elasticsearch
+    
   app:
     build:
       context: .

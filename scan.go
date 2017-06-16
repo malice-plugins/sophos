@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strings"
 	"time"
@@ -56,15 +57,40 @@ type ResultsData struct {
 func assert(err error) {
 	if err != nil {
 		// Sophos exits with error status 3 if it finds a virus...why?!
-		if err.Error() == "exit status 3" {
-			return
+		if err.Error() != "exit status 3" {
+			log.WithFields(log.Fields{
+				"plugin":   name,
+				"category": category,
+				"path":     path,
+			}).Fatal(err)
 		}
-		log.WithFields(log.Fields{
-			"plugin":   name,
-			"category": category,
-			"path":     path,
-		}).Fatal(err)
 	}
+}
+
+// RunCommand runs cmd on file
+func RunCommand(ctx context.Context, cmd string, args ...string) (string, error) {
+
+	var c *exec.Cmd
+
+	if ctx != nil {
+		c = exec.CommandContext(ctx, cmd, args...)
+	} else {
+		c = exec.Command(cmd, args...)
+	}
+
+	output, err := c.CombinedOutput()
+	if err != nil {
+		return string(output), err
+	}
+
+	// check for exec context timeout
+	if ctx != nil {
+		if ctx.Err() == context.DeadlineExceeded {
+			return "", fmt.Errorf("command %s timed out", cmd)
+		}
+	}
+
+	return string(output), nil
 }
 
 // AvScan performs antivirus scan
@@ -74,16 +100,27 @@ func AvScan(timeout int) Sophos {
 	defer cancel()
 
 	var results ResultsData
-	output, err := utils.RunCommand(ctx, "savscan", "-f", "-ss", path)
+	output, err := RunCommand(ctx, "/opt/sophos/bin/savscan", "-f", "-ss", path)
+	log.WithFields(log.Fields{
+		"plugin":   name,
+		"category": category,
+		"path":     path,
+	}).Debug("savscan Output: ", output)
 	assert(err)
-	results, err = ParseSophosOutput(output, err, path)
-	if err != nil {
+
+	if err != nil && err.Error() != "exit status 3" {
 		// If fails try a second time
-		output, err := utils.RunCommand(ctx, "savscan", "-f", "-ss", path)
-		assert(err)
-		results, err = ParseSophosOutput(output, err, path)
+		output, err = RunCommand(ctx, "/opt/sophos/bin/savscan", "-f", "-ss", path)
+		log.WithFields(log.Fields{
+			"plugin":   name,
+			"category": category,
+			"path":     path,
+		}).Debug("savscan Output: ", output)
 		assert(err)
 	}
+
+	results, err = ParseSophosOutput(output, err, path)
+	assert(err)
 
 	return Sophos{
 		Results: results,
@@ -114,15 +151,9 @@ func ParseSophosOutput(sophosout string, err error, errpath string) (ResultsData
 	// Threat Center at: http://www.sophos.com/en-us/threat-center.aspx
 	// End of Scan.
 
-	if err != nil {
+	if err != nil && err.Error() != "exit status 3" {
 		return ResultsData{}, err
 	}
-
-	log.WithFields(log.Fields{
-		"plugin":   name,
-		"category": category,
-		"path":     path,
-	}).Debug("Sophos Output: ", sophosout)
 
 	version, database := getSophosVersion()
 
@@ -161,14 +192,13 @@ func getSophosVersion() (version string, database string) {
 	// Platform                  : Linux/AMD64
 	// Released                  : 26 April 2016
 	// Total viruses (with IDEs) : 11283995
-	versionOut, err := utils.RunCommand(nil, "/opt/sophos/bin/savscan", "--version")
-	assert(err)
-
+	versionOut, err := RunCommand(nil, "/opt/sophos/bin/savscan", "--version")
 	log.WithFields(log.Fields{
 		"plugin":   name,
 		"category": category,
 		"path":     path,
 	}).Debug("Sophos Version: ", versionOut)
+	assert(err)
 
 	return parseSophosVersion(versionOut)
 }
@@ -233,7 +263,7 @@ func updateAV(ctx context.Context) error {
 	// Update completed.
 	// Updated to versions - SAV: 9.12.2, Engine: 3.65.2, Data: 5.30
 	// Successfully updated Sophos Anti-Virus from sdds:SOPHOS
-	output, err := utils.RunCommand(ctx, "/opt/sophos/update/savupdate.sh")
+	output, err := RunCommand(ctx, "/opt/sophos/update/savupdate.sh")
 	assert(err)
 
 	log.WithFields(log.Fields{

@@ -7,7 +7,10 @@ all: gotest build size test
 build:
 	docker build -t $(REPO)/$(NAME):$(VERSION) .
 
-dev:
+base:
+	docker build -f Dockerfile.base -t $(REPO)/$(NAME):base .
+
+dev: test
 	docker build -f Dockerfile.dev -t $(REPO)/$(NAME):$(VERSION) .
 
 size:
@@ -36,4 +39,9 @@ test:
 	cat results.json | jq .
 	docker rm -f elasticsearch
 
-.PHONY: build dev size tags test gotest
+clean:
+	docker-clean stop
+	docker rmi $(REPO)/$(NAME):$(VERSION)
+	docker rmi $(REPO)/$(NAME):base
+
+.PHONY: build dev size tags test gotest clean

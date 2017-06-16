@@ -1,0 +1,33 @@
+FROM debian:jessie
+
+LABEL maintainer "https://github.com/blacktop"
+
+LABEL malice.plugin.repository = "https://github.com/maliceio/malice-sophos.git"
+LABEL malice.plugin.category="av"
+LABEL malice.plugin.mime="*"
+LABEL malice.plugin.docker.engine="*"
+
+ENV GO_VERSION 1.8.3
+
+# Install Requirements
+COPY sav-linux-free-9.tgz /tmp/sav-linux-free-9.tgz
+RUN buildDeps='ca-certificates \
+               build-essential \
+               mercurial \
+               git-core \
+               wget' \
+  && DEBIAN_FRONTEND=noninteractive apt-get update -qq \
+  && apt-get install -yq $buildDeps \
+  && echo "===> Install Sophos..." \
+  && cd /tmp \
+  && tar xzvf sav-linux-free-9.tgz \
+  && ./sophos-av/install.sh /opt/sophos --update-free --acceptlicence --autostart=False --enableOnBoot=False --automatic --ignore-existing-installation --update-source-type=s \
+  && echo "===> Update Sophos..." \
+  && /opt/sophos/update/savupdate.sh \
+  && echo "===> Install Go..." \
+  && ARCH="$(dpkg --print-architecture)" \
+  && wget -q https://storage.googleapis.com/golang/go$GO_VERSION.linux-$ARCH.tar.gz -O /tmp/go.tar.gz \
+  && tar -C /usr/local -xzf /tmp/go.tar.gz
+
+# Add EICAR Test Virus File to malware folder
+ADD http://www.eicar.org/download/eicar.com.txt /malware/EICAR

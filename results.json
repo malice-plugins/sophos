@@ -1,1 +1,1 @@
-{"sophos":{"infected":false,"result":"","engine":"","database":"","updated":""}}
+{"sophos":{"infected":true,"result":"EICAR-AV-Test","engine":"5.34.0","database":"5.40","updated":"20170616"}}

@@ -14,3 +14,4 @@ docs*
 scan_test.go
 results.json
 .circleci
+*.out

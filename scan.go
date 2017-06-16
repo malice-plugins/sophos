@@ -74,12 +74,12 @@ func AvScan(timeout int) Sophos {
 	defer cancel()
 
 	var results ResultsData
-	output, err := utils.RunCommand(ctx, "savscan", "-f", path)
+	output, err := utils.RunCommand(ctx, "savscan", "-f", "-ss", path)
 	assert(err)
 	results, err = ParseSophosOutput(output, err, path)
 	if err != nil {
 		// If fails try a second time
-		output, err := utils.RunCommand(ctx, "savscan", "-f", path)
+		output, err := utils.RunCommand(ctx, "savscan", "-f", "-ss", path)
 		assert(err)
 		results, err = ParseSophosOutput(output, err, path)
 		assert(err)

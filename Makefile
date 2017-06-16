@@ -25,13 +25,15 @@ gotest:
 
 avtest:
 	@echo "===> Sophos Version"
-	@docker run --init --rm --entrypoint=bash $(REPO)/$(NAME):$(VERSION) -c "/opt/sophos/bin/savscan --version"
+	@docker run --init --rm --entrypoint=bash $(REPO)/$(NAME):$(VERSION) -c "/opt/sophos/bin/savscan --version" > av_version.out
 	@echo "===> Sophos EICAR Test"
-	@docker run --init --rm --entrypoint=bash $(REPO)/$(NAME):$(VERSION) -c "/opt/sophos/bin/savscan -f -ss EICAR" || true
+	@docker run --init --rm --entrypoint=bash $(REPO)/$(NAME):$(VERSION) -c "/opt/sophos/bin/savscan -f -ss EICAR" > av_scan.out || true
 
 test:
+	docker run --init -d --name elasticsearch blacktop/elasticsearch
 	docker run --init --rm $(REPO)/$(NAME):$(VERSION)
-	docker run --init --rm $(REPO)/$(NAME):$(VERSION) -V EICAR > results.json
+	docker run --init --rm --link elasticsearch $(REPO)/$(NAME):$(VERSION) -V EICAR > results.json
 	cat results.json | jq .
+	docker rm -f elasticsearch
 
 .PHONY: build dev size tags test gotest

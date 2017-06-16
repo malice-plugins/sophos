@@ -8,25 +8,7 @@ import (
 	log "github.com/Sirupsen/logrus"
 )
 
-const resultString = `SAVScan virus detection utility
-Version 5.21.0 [Linux/AMD64]
-Virus data version 5.27, April 2016
-Includes detection for 11283995 viruses, Trojans and worms
-Copyright (c) 1989-2016 Sophos Limited. All rights reserved.
-
-System time 03:48:15, System date 22 August 2016
-Command line qualifiers are: -f
-
-Full Scanning
-
->>> Virus 'EICAR-AV-Test' found in file EICAR
-
-1 file scanned in 4 seconds.
-1 virus was discovered.
-1 file out of 1 was infected.
-If you need further advice regarding any detections please visit our
-Threat Center at: http://www.sophos.com/en-us/threat-center.aspx
-End of Scan.
+const resultString = `>>> Virus 'EICAR-AV-Test' found in file EICAR
 `
 
 const versionString = `SAVScan virus detection utility

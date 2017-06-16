@@ -30,17 +30,17 @@ End of Scan.
 `
 
 const versionString = `SAVScan virus detection utility
-Copyright (c) 1989-2016 Sophos Limited. All rights reserved.
+Copyright (c) 1989-2017 Sophos Limited. All rights reserved.
 
-System time 03:41:05, System date 22 August 2016
+System time 15:42:06, System date 16 June 2017
 
-Product version           : 5.21.0
-Engine version            : 3.64.0
-Virus data version        : 5.27
-User interface version    : 2.03.064
+Product version           : 5.34.0
+Engine version            : 3.68.0
+Virus data version        : 5.40
+User interface version    : 2.03.068
 Platform                  : Linux/AMD64
-Released                  : 26 April 2016
-Total viruses (with IDEs) : 11283995
+Released                  : 30 May 2017
+Total viruses (with IDEs) : 13427613
 `
 
 func parseSophosVersion(versionOut string) (version string, database string) {

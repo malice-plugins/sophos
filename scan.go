@@ -14,9 +14,9 @@ import (
 	log "github.com/Sirupsen/logrus"
 	"github.com/fatih/structs"
 	"github.com/gorilla/mux"
+	"github.com/maliceio/go-plugin-utils/clitable"
 	"github.com/maliceio/go-plugin-utils/database/elasticsearch"
 	"github.com/maliceio/go-plugin-utils/utils"
-	"github.com/maliceio/malice/utils/clitable"
 	"github.com/parnurzeal/gorequest"
 	"github.com/urfave/cli"
 )
@@ -54,6 +54,11 @@ type ResultsData struct {
 }
 
 func assert(err error) {
+	// Sophos exits with error status 3 if it finds a virus...why?!
+	if err.Error() == "exit status 3" {
+		return
+	}
+
 	if err != nil {
 		log.WithFields(log.Fields{
 			"plugin":   name,
@@ -289,6 +294,7 @@ func webAvScan(w http.ResponseWriter, r *http.Request) {
 	defer os.Remove(tmpfile.Name()) // clean up
 
 	data, err := ioutil.ReadAll(file)
+	assert(err)
 
 	if _, err = tmpfile.Write(data); err != nil {
 		assert(err)

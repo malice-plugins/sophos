@@ -6,5 +6,7 @@ services:
   app:
     build:
       context: .
+    links:
+     - elasticsearch
     image: app
     command: -V -t EICAR

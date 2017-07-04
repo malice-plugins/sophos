@@ -67,7 +67,6 @@ jobs:
       - run:
           name: Run elasticsearch test
           command: |
-            sysctl -w vm.max_map_count=262144
             docker-compose -f ./docker-compose.ci.yml up
       # - deploy:
       #     name: Push application Docker image

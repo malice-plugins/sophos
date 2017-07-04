@@ -39,7 +39,7 @@ test:
 	docker run --init --rm --link elasticsearch $(ORG)/$(NAME):$(VERSION) -V EICAR | jq . > docs/results.json
 	cat docs/results.json | jq .
 	http localhost:9200/malice/_search | jq . > docs/elastic.json
-	cat docs/elastic.json | jq -r '.hits.hits[] ._source.plugins.av.fprot.markdown' > docs/SAMPLE.md
+	cat docs/elastic.json | jq -r '.hits.hits[] ._source.plugins.av.${NAME}.markdown' > docs/SAMPLE.md
 	docker rm -f elasticsearch
 
 circle:

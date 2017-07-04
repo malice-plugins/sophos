@@ -1,0 +1,9 @@
+{
+  "sophos": {
+    "infected": true,
+    "result": "EICAR-AV-Test",
+    "engine": "5.35.0",
+    "database": "5.41",
+    "updated": "20170704"
+  }
+}

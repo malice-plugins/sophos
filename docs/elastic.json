@@ -1,0 +1,36 @@
+{
+  "took": 49,
+  "timed_out": false,
+  "_shards": {
+    "total": 1,
+    "successful": 1,
+    "failed": 0
+  },
+  "hits": {
+    "total": 1,
+    "max_score": 1,
+    "hits": [
+      {
+        "_index": "malice",
+        "_type": "samples",
+        "_id": "AV0O9_oVcE77xNK3VhTS",
+        "_score": 1,
+        "_source": {
+          "plugins": {
+            "av": {
+              "sophos": {
+                "database": "5.41",
+                "engine": "5.35.0",
+                "infected": true,
+                "markdown": "#### Sophos\n| Infected      | Result      | Engine      | Updated      |\n|:-------------:|:-----------:|:-----------:|:------------:|\n| true | EICAR-AV-Test | 5.35.0 | 20170704 |\n",
+                "result": "EICAR-AV-Test",
+                "updated": "20170704"
+              }
+            }
+          },
+          "scan_date": "2017-07-04T18:58:38.733763318Z"
+        }
+      }
+    ]
+  }
+}

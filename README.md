@@ -1,7 +1,7 @@
 malice-sophos
 =============
 
-[![Circle CI](https://circleci.com/gh/maliceio/malice-sophos.png?style=shield)](https://circleci.com/gh/maliceio/malice-sophos) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/malice/sophos.svg)](https://hub.docker.com/r/malice/sophos/) [![Docker Pulls](https://img.shields.io/docker/pulls/malice/sophos.svg)](https://hub.docker.com/r/malice/sophos/) [![Docker Image](https://img.shields.io/badge/docker%20image-1.22%20GB-blue.svg)](https://hub.docker.com/r/malice/sophos/)
+[![Circle CI](https://circleci.com/gh/malice-plugins/sophos.png?style=shield)](https://circleci.com/gh/malice-plugins/sophos) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/malice/sophos.svg)](https://hub.docker.com/r/malice/sophos/) [![Docker Pulls](https://img.shields.io/docker/pulls/malice/sophos.svg)](https://hub.docker.com/r/malice/sophos/) [![Docker Image](https://img.shields.io/badge/docker%20image-1.22-blue.svg)](https://hub.docker.com/r/malice/sophos/)
 
 This repository contains a **Dockerfile** of [Sophos](https://www.sophos.com/en-us/products/free-tools/sophos-antivirus-for-linux.aspx) for [Docker](https://www.docker.io/)'s [trusted build](https://hub.docker.com/r/malice/sophos/) published to the public [DockerHub](https://index.docker.io/).
 
@@ -86,24 +86,24 @@ Sample Output
 Documentation
 -------------
 
--	[To write results to ElasticSearch](https://github.com/maliceio/malice-sophos/blob/master/docs/elasticsearch.md)
--	[To create a Sophos scan micro-service](https://github.com/maliceio/malice-sophos/blob/master/docs/web.md)
--	[To post results to a webhook](https://github.com/maliceio/malice-sophos/blob/master/docs/callback.md)
--	[To update the AV definitions](https://github.com/maliceio/malice-sophos/blob/master/docs/update.md)
+-	[To write results to ElasticSearch](https://github.com/malice-plugins/sophos/blob/master/docs/elasticsearch.md)
+-	[To create a Sophos scan micro-service](https://github.com/malice-plugins/sophos/blob/master/docs/web.md)
+-	[To post results to a webhook](https://github.com/malice-plugins/sophos/blob/master/docs/callback.md)
+-	[To update the AV definitions](https://github.com/malice-plugins/sophos/blob/master/docs/update.md)
 
 ### Issues
 
-Find a bug? Want more features? Find something missing in the documentation? Let me know! Please don't hesitate to [file an issue](https://github.com/maliceio/malice-sophos/issues/new).
+Find a bug? Want more features? Find something missing in the documentation? Let me know! Please don't hesitate to [file an issue](https://github.com/malice-plugins/sophos/issues/new).
 
 ### CHANGELOG
 
-See [`CHANGELOG.md`](https://github.com/maliceio/malice-sophos/blob/master/sophos/CHANGELOG.md)
+See [`CHANGELOG.md`](https://github.com/malice-plugins/sophos/blob/master/sophos/CHANGELOG.md)
 
 ### Contributing
 
-[See all contributors on GitHub](https://github.com/maliceio/malice-sophos/graphs/contributors).
+[See all contributors on GitHub](https://github.com/malice-plugins/sophos/graphs/contributors).
 
-Please update the [CHANGELOG.md](https://github.com/maliceio/malice-sophos/blob/master/sophos/CHANGELOG.md) and submit a [Pull Request on GitHub](https://help.github.com/articles/using-pull-requests/).
+Please update the [CHANGELOG.md](https://github.com/malice-plugins/sophos/blob/master/sophos/CHANGELOG.md) and submit a [Pull Request on GitHub](https://help.github.com/articles/using-pull-requests/).
 
 ### License
 

@@ -1,9 +1,11 @@
 package main
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
+	"html/template"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -15,7 +17,6 @@ import (
 	log "github.com/Sirupsen/logrus"
 	"github.com/fatih/structs"
 	"github.com/gorilla/mux"
-	"github.com/maliceio/go-plugin-utils/clitable"
 	"github.com/maliceio/go-plugin-utils/database/elasticsearch"
 	"github.com/maliceio/go-plugin-utils/utils"
 	"github.com/parnurzeal/gorequest"
@@ -52,6 +53,7 @@ type ResultsData struct {
 	Engine   string `json:"engine" structs:"engine"`
 	Database string `json:"database" structs:"database"`
 	Updated  string `json:"updated" structs:"updated"`
+	MarkDown string `json:"markdown,omitempty" structs:"markdown,omitempty"`
 }
 
 func assert(err error) {
@@ -278,18 +280,17 @@ func updateAV(ctx context.Context) error {
 	return err
 }
 
-func printMarkDownTable(sophos Sophos) {
+func generateMarkDownTable(s Sophos) string {
+	var tplOut bytes.Buffer
 
-	fmt.Println("#### Sophos")
-	table := clitable.New([]string{"Infected", "Result", "Engine", "Updated"})
-	table.AddRow(map[string]interface{}{
-		"Infected": sophos.Results.Infected,
-		"Result":   sophos.Results.Result,
-		"Engine":   sophos.Results.Engine,
-		"Updated":  sophos.Results.Updated,
-	})
-	table.Markdown = true
-	table.Print()
+	t := template.Must(template.New("sophos").Parse(tpl))
+
+	err := t.Execute(&tplOut, s)
+	if err != nil {
+		log.Println("executing template:", err)
+	}
+
+	return tplOut.String()
 }
 
 func printStatus(resp gorequest.Response, body string, errs []error) {
@@ -425,6 +426,7 @@ func main() {
 			}
 
 			sophos := AvScan(c.Int("timeout"))
+			sophos.Results.MarkDown = generateMarkDownTable(sophos)
 
 			// upsert into Database
 			elasticsearch.InitElasticSearch(elastic)
@@ -436,8 +438,9 @@ func main() {
 			})
 
 			if c.Bool("table") {
-				printMarkDownTable(sophos)
+				fmt.Println(sophos.Results.MarkDown)
 			} else {
+				sophos.Results.MarkDown = ""
 				sophosJSON, err := json.Marshal(sophos)
 				assert(err)
 				if c.Bool("post") {
@@ -455,7 +458,7 @@ func main() {
 				fmt.Println(string(sophosJSON))
 			}
 		} else {
-			log.Fatal(fmt.Errorf("Please supply a file to scan with malice/sophos"))
+			log.Fatal(fmt.Errorf("please supply a file to scan with malice/sophos"))
 		}
 		return nil
 	}

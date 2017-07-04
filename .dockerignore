@@ -1,7 +1,11 @@
 # Ignore .git folder
 .git*
-
 .gitignore
+
+.circleci*
+docs*
+tests*
+
 README.md
 README.md.bu
 LICENSE
@@ -10,8 +14,8 @@ scan_test.go
 CHANGELOG.md
 circle.yml
 Makefile
-docs*
 scan_test.go
 results.json
 .circleci
 *.out
+docker-compose.ci.yml

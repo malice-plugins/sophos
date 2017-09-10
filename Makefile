@@ -20,6 +20,9 @@ size:
 tags:
 	docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" $(ORG)/$(NAME)
 
+ssh:
+	@docker run --init -it --rm --entrypoint=bash $(ORG)/$(NAME):$(VERSION)
+
 tar:
 	docker save $(ORG)/$(NAME):$(VERSION) -o $(NAME).tar
 

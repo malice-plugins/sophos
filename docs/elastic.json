@@ -1,5 +1,5 @@
 {
-  "took": 49,
+  "took": 47,
   "timed_out": false,
   "_shards": {
     "total": 1,
@@ -13,22 +13,22 @@
       {
         "_index": "malice",
         "_type": "samples",
-        "_id": "AV0O9_oVcE77xNK3VhTS",
+        "_id": "AV5tWFf_KJpNmpvcuOhP",
         "_score": 1,
         "_source": {
           "plugins": {
             "av": {
               "sophos": {
-                "database": "5.41",
-                "engine": "5.35.0",
+                "database": "5.43",
+                "engine": "5.38.0",
                 "infected": true,
-                "markdown": "#### Sophos\n| Infected      | Result      | Engine      | Updated      |\n|:-------------:|:-----------:|:-----------:|:------------:|\n| true | EICAR-AV-Test | 5.35.0 | 20170704 |\n",
+                "markdown": "#### Sophos\n| Infected      | Result      | Engine      | Updated      |\n|:-------------:|:-----------:|:-----------:|:------------:|\n| true | EICAR-AV-Test | 5.38.0 | 20170910 |\n",
                 "result": "EICAR-AV-Test",
-                "updated": "20170704"
+                "updated": "20170910"
               }
             }
           },
-          "scan_date": "2017-07-04T18:58:38.733763318Z"
+          "scan_date": "2017-09-10T19:50:59.831987204Z"
         }
       }
     ]

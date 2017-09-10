@@ -11,7 +11,8 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apk add --no-cache jq curl
+            apk add --no-cache jq curl py2-pip
+            pip install docker-compose
       - restore_cache:
           keys:
             - v1-{{ .Branch }}

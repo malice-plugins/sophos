@@ -19,6 +19,7 @@ RUN buildDeps='ca-certificates wget' \
   && tar xzvf sav-linux-free-9.tgz \
   && ./sophos-av/install.sh /opt/sophos --update-free --acceptlicence --autostart=False --enableOnBoot=False --automatic --ignore-existing-installation --update-source-type=s \
   && echo "===> Update Sophos..." \
+  && mkdir -p /opt/malice \
   && /opt/sophos/update/savupdate.sh \
   && echo "===> Clean up unnecessary files..." \
   && apt-get remove --purge -y $buildDeps \

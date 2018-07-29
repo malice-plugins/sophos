@@ -1,9 +1,9 @@
 {
   "sophos": {
     "infected": true,
-    "result": "EICAR-AV-Test",
-    "engine": "5.38.0",
-    "database": "5.43",
-    "updated": "20170910"
+    "result": "Troj/Lecna-Q",
+    "engine": "5.47.0",
+    "database": "5.53",
+    "updated": "20180729"
   }
 }

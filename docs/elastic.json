@@ -1,9 +1,10 @@
 {
-  "took": 47,
+  "took": 48,
   "timed_out": false,
   "_shards": {
     "total": 1,
     "successful": 1,
+    "skipped": 0,
     "failed": 0
   },
   "hits": {
@@ -13,22 +14,22 @@
       {
         "_index": "malice",
         "_type": "samples",
-        "_id": "AV5tWFf_KJpNmpvcuOhP",
+        "_id": "o3uv5GQBF7EWhTg92_Ei",
         "_score": 1,
         "_source": {
           "plugins": {
             "av": {
               "sophos": {
-                "database": "5.43",
-                "engine": "5.38.0",
+                "database": "5.53",
+                "engine": "5.47.0",
                 "infected": true,
-                "markdown": "#### Sophos\n| Infected      | Result      | Engine      | Updated      |\n|:-------------:|:-----------:|:-----------:|:------------:|\n| true | EICAR-AV-Test | 5.38.0 | 20170910 |\n",
-                "result": "EICAR-AV-Test",
-                "updated": "20170910"
+                "markdown": "#### Sophos\n| Infected      | Result      | Engine      | Updated      |\n|:-------------:|:-----------:|:-----------:|:------------:|\n| true | Troj/Lecna-Q | 5.47.0 | 20180729 |\n",
+                "result": "Troj/Lecna-Q",
+                "updated": "20180729"
               }
             }
           },
-          "scan_date": "2017-09-10T19:50:59.831987204Z"
+          "scan_date": "2018-07-29T06:18:07.516287683Z"
         }
       }
     ]

@@ -1,12 +1,14 @@
 version: '3'
 services:
   elasticsearch:
-    image: blacktop/elasticsearch
-    
+    image: malice/elasticsearch:6.3
+
   app:
     build:
       context: .
     links:
      - elasticsearch
     image: app
+    environment:
+      - MALICE_ELASTICSEARCH=elasticsearch
     command: -V -t EICAR

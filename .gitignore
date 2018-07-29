@@ -26,3 +26,5 @@ _testmain.go
 sav-linux-free-9.tgz
 README.md.bu
 .circleci/build_num
+tests/malware
+tests/not.malware

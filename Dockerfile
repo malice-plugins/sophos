@@ -24,7 +24,7 @@ RUN buildDeps='ca-certificates wget' \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /go
 
-ENV GO_VERSION 1.10.3
+ENV GO_VERSION 1.11
 
 # Install Go binary
 COPY . /go/src/github.com/maliceio/malice-sophos
@@ -45,7 +45,7 @@ RUN buildDeps='ca-certificates \
   && export GOPATH=/go \
   && go version \
   && go get \
-  && go build -ldflags "-s -w -X main.Version=$(cat VERSION) -X main.BuildTime=$(date -u +%Y%m%d)" -o /bin/avscan \
+  && go build -ldflags "-s -w -X main.Version=v$(cat VERSION) -X main.BuildTime=$(date -u +%Y%m%d)" -o /bin/avscan \
   && echo "===> Clean up unnecessary files..." \
   && apt-get remove --purge -y $buildDeps \
   && apt-get clean \

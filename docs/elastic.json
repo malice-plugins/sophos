@@ -8,28 +8,49 @@
     "failed": 0
   },
   "hits": {
-    "total": 1,
+    "total": 2,
     "max_score": 1,
     "hits": [
       {
         "_index": "malice",
         "_type": "samples",
-        "_id": "o3uv5GQBF7EWhTg92_Ei",
+        "_id": "pxEvnWUBbXBK6N1OGFV6",
         "_score": 1,
         "_source": {
           "plugins": {
             "av": {
               "sophos": {
-                "database": "5.53",
+                "database": "5.54",
                 "engine": "5.47.0",
                 "infected": true,
-                "markdown": "#### Sophos\n| Infected      | Result      | Engine      | Updated      |\n|:-------------:|:-----------:|:-----------:|:------------:|\n| true | Troj/Lecna-Q | 5.47.0 | 20180729 |\n",
+                "markdown": "#### Sophos\n| Infected      | Result      | Engine      | Updated      |\n|:-------------:|:-----------:|:-----------:|:------------:|\n| true | Troj/Lecna-Q | 5.47.0 | 20180903 |\n",
                 "result": "Troj/Lecna-Q",
-                "updated": "20180729"
+                "updated": "20180903"
               }
             }
           },
-          "scan_date": "2018-07-29T06:18:07.516287683Z"
+          "scan_date": "2018-09-03T02:07:14.031142556Z"
+        }
+      },
+      {
+        "_index": "malice",
+        "_type": "samples",
+        "_id": "qBEvnWUBbXBK6N1OXFXi",
+        "_score": 1,
+        "_source": {
+          "plugins": {
+            "av": {
+              "sophos": {
+                "database": "5.54",
+                "engine": "5.47.0",
+                "infected": false,
+                "markdown": "#### Sophos\n| Infected      | Result      | Engine      | Updated      |\n|:-------------:|:-----------:|:-----------:|:------------:|\n| false |  | 5.47.0 | 20180903 |\n",
+                "result": "",
+                "updated": "20180903"
+              }
+            }
+          },
+          "scan_date": "2018-09-03T02:07:31.552915187Z"
         }
       }
     ]

@@ -8,9 +8,9 @@ LABEL malice.plugin.mime="*"
 LABEL malice.plugin.docker.engine="*"
 
 # Install Requirements
-RUN buildDeps='ca-certificates wget' \
+RUN buildDeps='wget' \
   && DEBIAN_FRONTEND=noninteractive apt-get update -qq \
-  && apt-get install -yq $buildDeps \
+  && apt-get install -yq $buildDeps ca-certificates \
   && echo "===> Install Sophos..." \
   && cd /tmp \
   && wget -q https://github.com/maliceio/malice-av/raw/master/sophos/sav-linux-free-9.tgz \

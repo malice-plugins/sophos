@@ -1,5 +1,5 @@
 {
-  "took": 48,
+  "took": 42,
   "timed_out": false,
   "_shards": {
     "total": 1,
@@ -14,7 +14,7 @@
       {
         "_index": "malice",
         "_type": "samples",
-        "_id": "pxEvnWUBbXBK6N1OGFV6",
+        "_id": "8bUqrGUBcrcYiUZc6ZFG",
         "_score": 1,
         "_source": {
           "plugins": {
@@ -23,19 +23,19 @@
                 "database": "5.54",
                 "engine": "5.47.0",
                 "infected": true,
-                "markdown": "#### Sophos\n| Infected      | Result      | Engine      | Updated      |\n|:-------------:|:-----------:|:-----------:|:------------:|\n| true | Troj/Lecna-Q | 5.47.0 | 20180903 |\n",
+                "markdown": "#### Sophos\n| Infected      | Result      | Engine      | Updated      |\n|:-------------:|:-----------:|:-----------:|:------------:|\n| true | Troj/Lecna-Q | 5.47.0 | 20180905 |\n",
                 "result": "Troj/Lecna-Q",
-                "updated": "20180903"
+                "updated": "20180905"
               }
             }
           },
-          "scan_date": "2018-09-03T02:07:14.031142556Z"
+          "scan_date": "2018-09-05T23:56:58.041015493Z"
         }
       },
       {
         "_index": "malice",
         "_type": "samples",
-        "_id": "qBEvnWUBbXBK6N1OXFXi",
+        "_id": "8rUrrGUBcrcYiUZcGpFM",
         "_score": 1,
         "_source": {
           "plugins": {
@@ -44,13 +44,13 @@
                 "database": "5.54",
                 "engine": "5.47.0",
                 "infected": false,
-                "markdown": "#### Sophos\n| Infected      | Result      | Engine      | Updated      |\n|:-------------:|:-----------:|:-----------:|:------------:|\n| false |  | 5.47.0 | 20180903 |\n",
+                "markdown": "#### Sophos\n| Infected      | Result      | Engine      | Updated      |\n|:-------------:|:-----------:|:-----------:|:------------:|\n| false |  | 5.47.0 | 20180905 |\n",
                 "result": "",
-                "updated": "20180903"
+                "updated": "20180905"
               }
             }
           },
-          "scan_date": "2018-09-03T02:07:31.552915187Z"
+          "scan_date": "2018-09-05T23:57:10.602250781Z"
         }
       }
     ]

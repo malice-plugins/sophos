@@ -8,7 +8,7 @@ Malice Sophos AntiVirus Plugin
 
 ### Dependencies
 
-- [debian:jessie (_125 MB_\)](https://index.docker.io/_/debian/)
+- [ubuntu:bionic (_84.1 MB_\)](https://index.docker.io/_/debian/)
 
 ## Installation
 

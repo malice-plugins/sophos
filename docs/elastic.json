@@ -1,5 +1,5 @@
 {
-  "took": 42,
+  "took": 150,
   "timed_out": false,
   "_shards": {
     "total": 1,
@@ -14,43 +14,43 @@
       {
         "_index": "malice",
         "_type": "samples",
-        "_id": "8bUqrGUBcrcYiUZc6ZFG",
+        "_id": "rzWuIWkB52-QvUJ8CfxD",
         "_score": 1,
         "_source": {
           "plugins": {
             "av": {
               "sophos": {
-                "database": "5.54",
-                "engine": "5.47.0",
+                "database": "5.60",
+                "engine": "5.53.0",
                 "infected": true,
-                "markdown": "#### Sophos\n| Infected      | Result      | Engine      | Updated      |\n|:-------------:|:-----------:|:-----------:|:------------:|\n| true | Troj/Lecna-Q | 5.47.0 | 20180905 |\n",
+                "markdown": "#### Sophos\n| Infected      | Result      | Engine      | Updated      |\n|:-------------:|:-----------:|:-----------:|:------------:|\n| true | Troj/Lecna-Q | 5.53.0 | 20190224 |\n",
                 "result": "Troj/Lecna-Q",
-                "updated": "20180905"
+                "updated": "20190224"
               }
             }
           },
-          "scan_date": "2018-09-05T23:56:58.041015493Z"
+          "scan_date": "2019-02-24T22:44:07.5909285Z"
         }
       },
       {
         "_index": "malice",
         "_type": "samples",
-        "_id": "8rUrrGUBcrcYiUZcGpFM",
+        "_id": "sDWuIWkB52-QvUJ8R_wM",
         "_score": 1,
         "_source": {
           "plugins": {
             "av": {
               "sophos": {
-                "database": "5.54",
-                "engine": "5.47.0",
+                "database": "5.60",
+                "engine": "5.53.0",
                 "infected": false,
-                "markdown": "#### Sophos\n| Infected      | Result      | Engine      | Updated      |\n|:-------------:|:-----------:|:-----------:|:------------:|\n| false |  | 5.47.0 | 20180905 |\n",
+                "markdown": "#### Sophos\n| Infected      | Result      | Engine      | Updated      |\n|:-------------:|:-----------:|:-----------:|:------------:|\n| false |  | 5.53.0 | 20190224 |\n",
                 "result": "",
-                "updated": "20180905"
+                "updated": "20190224"
               }
             }
           },
-          "scan_date": "2018-09-05T23:57:10.602250781Z"
+          "scan_date": "2019-02-24T22:44:23.4337618Z"
         }
       }
     ]

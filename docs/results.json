@@ -2,8 +2,8 @@
   "sophos": {
     "infected": true,
     "result": "Troj/Lecna-Q",
-    "engine": "5.47.0",
-    "database": "5.54",
-    "updated": "20180905"
+    "engine": "5.53.0",
+    "database": "5.60",
+    "updated": "20190224"
   }
 }

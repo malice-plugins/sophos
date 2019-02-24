@@ -39,7 +39,7 @@ RUN buildDeps='wget ca-certificates' \
   && echo "===> Update Sophos..." \
   && mkdir -p /opt/malice \
   && /opt/sophos/update/savupdate.sh \
-  && /opt/sophos/bin/savconfig  set DisableFeedback true \
+  && /opt/sophos/bin/savconfig set DisableFeedback true \
   && echo "===> Clean up unnecessary files..." \
   && apt-get purge -y --auto-remove $buildDeps \
   && apt-get clean \

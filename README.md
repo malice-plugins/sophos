@@ -1,6 +1,6 @@
 # malice-sophos
 
-[![Circle CI](https://circleci.com/gh/malice-plugins/sophos.png?style=shield)](https://circleci.com/gh/malice-plugins/sophos) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/malice/sophos.svg)](https://hub.docker.com/r/malice/sophos/) [![Docker Pulls](https://img.shields.io/docker/pulls/malice/sophos.svg)](https://hub.docker.com/r/malice/sophos/) [![Docker Image](https://img.shields.io/badge/docker%20image-930MB-blue.svg)](https://hub.docker.com/r/malice/sophos/)
+[![Circle CI](https://circleci.com/gh/malice-plugins/sophos.png?style=shield)](https://circleci.com/gh/malice-plugins/sophos) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/malice/sophos.svg)](https://hub.docker.com/r/malice/sophos/) [![Docker Pulls](https://img.shields.io/docker/pulls/malice/sophos.svg)](https://hub.docker.com/r/malice/sophos/) [![Docker Image](https://img.shields.io/badge/docker%20image-976MB-blue.svg)](https://hub.docker.com/r/malice/sophos/)
 
 Malice Sophos AntiVirus Plugin
 
